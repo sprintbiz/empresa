@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="Empresa.Scenario1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Empresa"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="120,10,0,950" Width="483">
+            <TextBox HorizontalAlignment="Left"  Width="100" Height="30" Name="txtYear" Margin="5"/>
+            <Button Name="FilterYear" Content="Year" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="1" Click="FilterYear_Click"/>
+        </StackPanel>
+        <ListView Margin="10,100,0,10"  Name="InventoryList" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.IsHorizontalRailEnabled="True">
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal"  >
+                        <TextBlock Text="Code" Margin="8,0" Width="100"/>
+                        <TextBlock Text="Customer Name" Width="200"/>
+                        <TextBlock Text="Quantity" Width="200"/>
+                        <TextBlock Text="Create Date" Width="200"/>
+                        <TextBlock Text="Payment Date" Width="200"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Product">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Name="InvoiceCode" Text="{x:Bind InvoiceCode}" Width="100" />
+                        <TextBlock Name="CustomerName" Text="{x:Bind CustomerName}" Width="200" />
+                        <TextBlock Name="Quantity" Text="{x:Bind Quantity}" Width="200" />
+                        <TextBlock Name="CreateDate" Text="{x:Bind CreateDate}" Width="200" />
+                        <TextBlock Name="PaymentDate" Text="{x:Bind CreateDate}" Width="200" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

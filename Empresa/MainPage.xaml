@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="Empresa.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Empresa"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <SplitView x:Name="Splitter" IsPaneOpen="True" Grid.Row="1" DisplayMode="Inline">
+            <SplitView.Pane>
+                <RelativePanel Margin="10,0,0,0">
+                    <TextBlock x:Name="SampleTitle" Text="" Style="{StaticResource SampleHeaderTextStyle}" TextWrapping="Wrap" Margin="0,10,0,0"/>
+                    <!-- Provide an AutomationProperties.Name for a list to a screen reader. A shipping app would localize this. -->
+                    <ListBox x:Name="ScenarioControl" SelectionChanged="ScenarioControl_SelectionChanged" AutomationProperties.Name="Scenarios"
+                 SelectionMode="Single" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0"
+                 VerticalAlignment="Top" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="local:Scenario">
+                                <TextBlock Text="{x:Bind Title}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </RelativePanel>
+            </SplitView.Pane>
+
+            <RelativePanel>
+                <Frame x:Name="ScenarioFrame" Margin="5" RelativePanel.AlignTopWithPanel="True" />
+            </RelativePanel>
+        </SplitView>
+    </Grid>
+
+</Page>
