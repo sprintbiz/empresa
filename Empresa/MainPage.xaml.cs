@@ -43,8 +43,8 @@ namespace Empresa
         List<Scenario> scenarios = new List<Scenario>
         {
             new Scenario() { Title="Invoices", ClassType=typeof(Scenario1)},
-            new Scenario() { Title="New Invoice", ClassType=typeof(Scenario2)},
-            //new Scenario() { Title="Device Capabilities", ClassType=typeof(Scenario3)},
+            new Scenario() { Title="Taxes", ClassType=typeof(Scenario2)},
+            new Scenario() { Title="Services", ClassType=typeof(Scenario3)},
             //new Scenario() { Title="XAML Manipulations", ClassType=typeof(Scenario4)},
             //new Scenario() { Title="Gesture Recognizer", ClassType=typeof(Scenario5)}
         };
@@ -89,6 +89,14 @@ namespace Empresa
                     Splitter.IsPaneOpen = false;
                 }
             }
+        }
+
+        public void SetStatus(string strMessage)
+        {
+            // If called from the UI thread, then update immediately.
+            // Otherwise, schedule a task on the UI thread to perform the update.
+            StatusBorder.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+            StatusBlock.Text = strMessage;
         }
     }
 }

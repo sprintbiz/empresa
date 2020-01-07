@@ -21,8 +21,13 @@ namespace Empresa
             this.InitializeComponent();
             InventoryList.ItemsSource = GetProducts((App.Current as App).ConnectionString, Globals.FilterYear);
         }
-        public ObservableCollection<Product> GetProducts(string connectionString, string year)
+        public ObservableCollection<InvoiceService> GetProducts(string connectionString, string year)
         {
+            if (String.IsNullOrEmpty(year))
+            {
+                year = DateTime.Now.Year.ToString();
+            }
+
             string GetProductsQuery =
                "SELECT [InvoiceCode]" +
                ",[CustomerName]" +
@@ -33,7 +38,7 @@ namespace Empresa
                "WHERE [CreateYear] = " + year;
 
 
-            var products = new ObservableCollection<Product>();
+            var InvoiceServices = new ObservableCollection<InvoiceService>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -48,19 +53,19 @@ namespace Empresa
                             {
                                 while (reader.Read())
                                 {
-                                    var product = new Product();
-                                    product.InvoiceCode = reader.GetString(0);
-                                    product.CustomerName = reader.GetString(1);
-                                    product.Quantity = reader.GetDecimal(2);
-                                    product.CreateDate = reader.GetDateTime(3);
-                                    product.PaymentDate = reader.GetDateTime(4);
-                                    products.Add(product);
+                                    var InvoiceService = new InvoiceService();
+                                    InvoiceService.InvoiceCode = reader.GetString(0);
+                                    InvoiceService.CustomerName = reader.GetString(1);
+                                    InvoiceService.Quantity = reader.GetDecimal(2);
+                                    InvoiceService.CreateDate = reader.GetDateTime(3);
+                                    InvoiceService.PaymentDate = reader.GetDateTime(4);
+                                    InvoiceServices.Add(InvoiceService);
                                 }
                             }
                         }
                     }
                 }
-                return products;
+                return InvoiceServices;
             }
             catch (Exception eSql)
             {

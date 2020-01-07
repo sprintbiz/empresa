@@ -116,8 +116,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="2_Insert_Invoice.xaml.cs">
-      <DependentUpon>2_Insert_Invoice.xaml</DependentUpon>
+    <Compile Include="3_Insert_Service.xaml.cs">
+      <DependentUpon>3_Insert_Service.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="2_Insert_Tax.xaml.cs">
+      <DependentUpon>2_Insert_Tax.xaml</DependentUpon>
     </Compile>
     <Compile Include="1_List_Invoice.xaml.cs">
       <DependentUpon>1_List_Invoice.xaml</DependentUpon>
@@ -125,12 +128,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service.cs" />
     <Compile Include="Tax.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="InvoiceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +156,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="2_Insert_Invoice.xaml">
+    <Page Include="3_Insert_Service.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="2_Insert_Tax.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -26,7 +26,7 @@
                 </DataTemplate>
             </ListView.HeaderTemplate>
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Product">
+                <DataTemplate x:DataType="local:InvoiceService">
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock Name="InvoiceCode" Text="{x:Bind InvoiceCode}" Width="100" />
                         <TextBlock Name="CustomerName" Text="{x:Bind CustomerName}" Width="200" />

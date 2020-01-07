@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="Empresa.Scenario3"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Empresa"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="10,10,0,680" Width="250">
+            <TextBlock Text="Service Name" />
+            <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtServiceName" Margin="5"/>
+            <TextBlock Text="Unit Price" />
+            <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtServiceUnitPrice" Margin="5"/>
+            <TextBlock Text="Version" />
+            <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtServiceVersion" Margin="5"/>
+            <TextBlock Text="Tax" />
+            <ComboBox x:Name="comTax" Height="30" Width="100" DisplayMemberPath="Name" SelectedValuePath="TaxId"/>
+            <Button Name="SubmitNewService" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="1" Click="SubmitNewService_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="260,10,990,680" Width="250">
+            <TextBlock Text="Service Name" />
+            <TextBox HorizontalAlignment="Left"  Width="100" Height="30" Name="txtServiceUpdateName" Margin="5"/>
+            <TextBlock Text="Unit Price" />
+            <TextBox HorizontalAlignment="Left"  Width="100" Height="30" Name="txtServiceUpdateUnitPrice" Margin="5"/>
+            <TextBlock Text="Version" />
+            <TextBox HorizontalAlignment="Left"  Width="100" Height="30" Name="txtServiceUpdateVersion" Margin="5"/>
+            <TextBlock Text="Tax" />
+            <ComboBox x:Name="comUpdateTax" Height="30" Width="100" DisplayMemberPath="Name" SelectedValuePath="TaxId"/>
+            <Button Name="SubmitUpdatedService" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="1" Click="UpdateService_Click"/>
+            <Button Name="DeleteSelectedService" Content="Delete Selected" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="1" Click="DeleteSelectedService_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="520,10,734,680" Width="250">
+            <TextBlock Text="Created" />
+            <TextBox HorizontalAlignment="Left"  Width="150" Height="30" Name="txtServiceCreated" Margin="5" IsReadOnly="True" Style="{x:Null}"/>
+            <TextBlock Text="Updated" />
+            <TextBox HorizontalAlignment="Left"  Width="150" Height="30" Name="txtServiceUpdated" Margin="5" IsReadOnly="True" Style="{x:Null}"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="10,350,750,10">
+            <ListView  x:Name="ServiceList" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.IsHorizontalRailEnabled="True" IsItemClickEnabled="True" ItemClick="ServiceList_ItemClick" >
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"  >
+                            <TextBlock Text="ID" Width="100"/>
+                            <TextBlock Text="Name" Width="200"/>
+                            <TextBlock Text="Unit Price" Width="200"/>
+                            <TextBlock Text="Version" Width="200"/>
+                            <TextBlock Text="Tax" Width="200"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Service">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock x:Name="ServiceId" Text="{x:Bind Path=ServiceId}" Width="100" />
+                            <TextBlock x:Name="ServiceName" Text="{x:Bind Path=Name}" Width="200" />
+                            <TextBlock x:Name="ServiceUnitPrice" Text="{x:Bind Path=UnitPrice}" Width="200" />
+                            <TextBlock x:Name="ServiceVersion" Text="{x:Bind Path=Version}" Width="200" />
+                            <TextBlock x:Name="ServiceTaxId" Text="{x:Bind Path=TaxId}" Width="200" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

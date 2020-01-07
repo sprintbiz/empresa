@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Empresa
 {
-    public class Tax : INotifyPropertyChanged
+    public class InvoiceService : INotifyPropertyChanged
     {
-        public int TaxId { get; set; }
-        public string Name { get; set; }
-        public decimal Value { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
+        public string InvoiceCode { get; set; }
+        public string CustomerName { get; set; }
+        public decimal Quantity { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime PaymentDate { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)
         {
