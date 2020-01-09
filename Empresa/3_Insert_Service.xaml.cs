@@ -23,7 +23,7 @@ namespace Empresa
         {
             this.InitializeComponent();
             ServiceList.ItemsSource = GetServices((App.Current as App).ConnectionString);
-            comTax.ItemsSource = GetTaxes((App.Current as App).ConnectionString);
+            comTax.ItemsSource = GetTaxes((App.Current as App).ConnectionString, "all");
         }
         private ObservableCollection<Service> GetServices(string connectionString)
         {
@@ -68,11 +68,14 @@ namespace Empresa
             }
             return null;
         }
-        private ObservableCollection<Tax> GetTaxes(string connectionString)
+        private ObservableCollection<Tax> GetTaxes(string connectionString, string id)
         {
             string GetTaxesQuery =
                 "SELECT [TaxId],[Name]" +
-                "FROM [dbo].[tax]";
+                "FROM [dbo].[tax] ";
+            if (id != "all") {
+                GetTaxesQuery += "where [TaxId] = 1" ;
+            }
 
             var taxes = new ObservableCollection<Tax>();
             try
@@ -158,8 +161,22 @@ namespace Empresa
             txtServiceUpdated.Text = clickedItem.Updated.ToShortDateString() + ' ' + clickedItem.Updated.ToShortTimeString();
 
             rootPage.SetStatus("Selected : " + clickedItem.Name.ToString());
-            comUpdateTax.ItemsSource = GetTaxes((App.Current as App).ConnectionString);
-            comUpdateTax.SelectedItem = 1;
+            comUpdateTax.ItemsSource = GetTaxes((App.Current as App).ConnectionString,"all");
+            var selectedItems = GetTaxes((App.Current as App).ConnectionString, "all");
+
+            int index = -1;
+            foreach (Tax item in selectedItems)
+            {
+                if (item.TaxId == clickedItem.TaxId)
+                {
+                    index = selectedItems.IndexOf(item);
+                    break;
+                }
+            }
+            comUpdateTax.ItemsSource = selectedItems;
+            comUpdateTax.SelectedIndex = index;
+
+
 
         }
 
