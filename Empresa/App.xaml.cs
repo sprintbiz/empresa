@@ -24,7 +24,7 @@ namespace Empresa
     {
         // Connection string for using Windows Authentication.
         private string connectionString =
-            @"";
+            @"Data Source=localhost;Initial Catalog=antman;Integrated Security=SSPI";
         // This is an example connection string for using SQL Server Authentication.
         // private string connectionString =
         //     @"Data Source=YourServerName\YourInstanceName;Initial Catalog=DatabaseName; User Id=XXXXX; Password=XXXXX";

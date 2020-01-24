@@ -59,7 +59,7 @@
                             <TextBlock x:Name="ServiceName" Text="{x:Bind Path=Name}" Width="200" />
                             <TextBlock x:Name="ServiceUnitPrice" Text="{x:Bind Path=UnitPrice}" Width="200" />
                             <TextBlock x:Name="ServiceVersion" Text="{x:Bind Path=Version}" Width="200" />
-                            <TextBlock x:Name="ServiceTaxId" Text="{x:Bind Path=TaxId}" Width="200" />
+                            <TextBlock x:Name="ServiceTaxId" Text="{x:Bind Path=TaxName}" Width="200" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

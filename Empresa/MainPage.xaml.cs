@@ -45,7 +45,7 @@ namespace Empresa
             new Scenario() { Title="Invoices", ClassType=typeof(Scenario1)},
             new Scenario() { Title="Taxes", ClassType=typeof(Scenario2)},
             new Scenario() { Title="Services", ClassType=typeof(Scenario3)},
-            //new Scenario() { Title="XAML Manipulations", ClassType=typeof(Scenario4)},
+            new Scenario() { Title="Address", ClassType=typeof(Scenario4)},
             //new Scenario() { Title="Gesture Recognizer", ClassType=typeof(Scenario5)}
         };
 

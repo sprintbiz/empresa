@@ -116,6 +116,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="4_Insert_Address.xaml.cs">
+      <DependentUpon>4_Insert_Address.xaml</DependentUpon>
+    </Compile>
     <Compile Include="3_Insert_Service.xaml.cs">
       <DependentUpon>3_Insert_Service.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Address.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Tax.cs" />
     <Compile Include="InvoiceService.cs" />
@@ -156,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="4_Insert_Address.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="3_Insert_Service.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Data.SqlClient;
 using Windows.UI.Xaml;
 using System.Linq;
+using System.Data;
 
 namespace Empresa
 {
@@ -28,8 +29,8 @@ namespace Empresa
         private ObservableCollection<Service> GetServices(string connectionString)
         {
             string GetServicesQuery =
-                "SELECT [ServiceId],[Name],[UnitPrice],[Version],[TaxId],[Created],[Updated]" +
-                "FROM [dbo].[service]";
+                "SELECT [ServiceId],[TaxId],[Name],[UnitPrice],[Version],[TaxName],[Created],[Updated]" +
+                "FROM [dbo].[vw_service]";
 
             var services = new ObservableCollection<Service>();
             try
@@ -48,12 +49,13 @@ namespace Empresa
                                 {
                                     var service = new Service();
                                     service.ServiceId = reader.GetInt32(0);
-                                    service.Name = reader.GetString(1);
-                                    service.UnitPrice = reader.GetDecimal(2);
-                                    service.Version = reader.GetString(3);
-                                    service.TaxId = reader.GetInt32(4);
-                                    service.Created = reader.GetDateTime(5);
-                                    service.Updated = reader.GetDateTime(6);
+                                    service.TaxId = reader.GetInt32(1);
+                                    service.Name = reader.GetString(2);
+                                    service.UnitPrice = reader.GetDecimal(3);
+                                    service.Version = reader.GetString(4);
+                                    service.TaxName = reader.GetString(5);
+                                    service.Created = reader.GetDateTime(6);
+                                    service.Updated = reader.GetDateTime(7);
                                     services.Add(service);
                                 }
                             }
@@ -184,16 +186,65 @@ namespace Empresa
         {
             rootPage = MainPage.Current;
 
+            Service SelectedService = (Service)ServiceList.SelectedItem;
+            var SelectedServiceId = SelectedService.ServiceId;
 
+            string insertServiceQuery =
+                "DELETE FROM [dbo].[service]" +
+                "WHERE [ServiceID] = @name";
 
+            using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString))
+            {
+                conn.Open();
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.Parameters.AddWithValue("name", SelectedServiceId);
+                        cmd.CommandText = insertServiceQuery;
+                        //cmd.ExecuteNonQuery();
+                        conn.Close();
+
+                        txtServiceUpdateName.Text = "";
+                        txtServiceUpdateUnitPrice.Text = "";
+                        txtServiceUpdateVersion.Text = "";
+                        comUpdateTax.ItemsSource = null;
+                        ServiceList.ItemsSource = GetServices((App.Current as App).ConnectionString);
+                        rootPage.SetStatus("Deleted Service : " + SelectedServiceId);
+                    }
+                }
+            }
         }
 
         private void UpdateService_Click(object sender, RoutedEventArgs e)
         {
             rootPage = MainPage.Current;
 
+            string UpdateServiceQuery =
+                "UPDATE [dbo].[service] " +
+                "SET [TaxId] = @taxid,[UnitId]=1, [Name] = @name, [UnitPrice] = @price, Updated = getdate() " +
+                "WHERE NAME = @where";
 
+            using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString))
+            {
+                conn.Open();
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.Parameters.AddWithValue("taxid", comUpdateTax.SelectedValue);
+                        cmd.Parameters.AddWithValue("name", txtServiceUpdateName.Text);
+                        cmd.Parameters.AddWithValue("price", Convert.ToDecimal(txtServiceUpdateUnitPrice.Text));
+                        cmd.Parameters.AddWithValue("where", Globals.Clicked);
+                        cmd.CommandText = UpdateServiceQuery;
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
 
+                        ServiceList.ItemsSource = GetServices((App.Current as App).ConnectionString);
+                        rootPage.SetStatus("Updated Service :" + txtServiceUpdateName.Text);
+                    }
+                }
+            }
         }
     }
 }

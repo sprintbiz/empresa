@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace Empresa
 {
-    class Service : INotifyPropertyChanged
+    class Address : INotifyPropertyChanged
     {
-        public int ServiceId { get; set; }
-        public int TaxId { get; set; }
-        public string TaxName { get; set; }
+        public int AddressId { get; set; }
+        public string AddressType { get; set; }
         public string Name { get; set; }
-        public decimal UnitPrice { get; set; }
-        public string Version { get; set; }
+        public string StreetName { get; set; }
+        public string StreetNumber { get; set; }
+        public string ZipCode { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;

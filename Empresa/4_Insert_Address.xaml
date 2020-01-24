@@ -1,0 +1,133 @@
+﻿<Page
+    x:Class="Empresa.Scenario4"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Empresa"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="10,10,0,680" Width="250">
+            <TextBlock Text="New Address"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Type" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtAddressType" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Name" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtAddressName" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Street" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtAddressStreetName" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Street Number" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtAddressStreetNumber" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Zip Code" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtAddressZipCode" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="City" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtAddressCity" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Country" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtAddressCountry" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <Button Name="SubmitNewAddress" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="1" Click="SubmitNewAddress_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="260,10,990,630" Width="250">
+            <TextBlock Text="New Address"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Type" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtUpdateAddressType" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Name" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtUpdateAddressName" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Street" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtUpdateAddressStreetName" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Street Number" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtUpdateAddressStreetNumber" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Zip Code" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtUpdateAddressZipCode" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="City" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtUpdateAddressCity" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Country" />
+                    <TextBox HorizontalAlignment="Left" Width="100" Height="30" Name="txtUpdateAddressCountry" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <Button Name="SubmitUpdatedService" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="1" Click="UpdateAddress_Click"/>
+            <Button Name="DeleteSelectedService" Content="Delete Selected" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="1" Click="DeleteSelectedAddress_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="520,10,734,680" Width="250">
+            <TextBlock Text="Created" />
+            <TextBox HorizontalAlignment="Left"  Width="150" Height="30" Name="txtAddressCreated" Margin="5" IsReadOnly="True" Style="{x:Null}"/>
+            <TextBlock Text="Updated" />
+            <TextBox HorizontalAlignment="Left"  Width="150" Height="30" Name="txtAddressUpdated" Margin="5" IsReadOnly="True" Style="{x:Null}"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="10,380,750,10">
+            <ListView  x:Name="AddressList" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.IsHorizontalRailEnabled="True" IsItemClickEnabled="True" ItemClick="AddressList_ItemClick" >
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"  >
+                            <TextBlock Text="ID" Width="100"/>
+                            <TextBlock Text="Type" Width="200"/>
+                            <TextBlock Text="Name" Width="200"/>
+                            <TextBlock Text="Street Name" Width="200"/>
+                            <TextBlock Text="Street Number" Width="200"/>
+                            <TextBlock Text="Zip Code" Width="200"/>
+                            <TextBlock Text="City" Width="200"/>
+                            <TextBlock Text="Country" Width="200"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Address">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock x:Name="AddressId" Text="{x:Bind Path=AddressId}" Width="100" />
+                            <TextBlock x:Name="AddressType" Text="{x:Bind Path=AddressType}" Width="200" />
+                            <TextBlock x:Name="AddressName" Text="{x:Bind Path=Name}" Width="200" />
+                            <TextBlock x:Name="AddressStreetName" Text="{x:Bind Path=StreetName}" Width="200" />
+                            <TextBlock x:Name="AddressStreetNumber" Text="{x:Bind Path=StreetNumber}" Width="200" />
+                            <TextBlock x:Name="AddressZipCode" Text="{x:Bind Path=ZipCode}" Width="200" />
+                            <TextBlock x:Name="AddressCity" Text="{x:Bind Path=City}" Width="200" />
+                            <TextBlock x:Name="AddressCountry" Text="{x:Bind Path=Country}" Width="200" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>
